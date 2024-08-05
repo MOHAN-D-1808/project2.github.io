@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sticky Notes</title>
+        <style>
+            body
+            {
+                background-image: url("https://images.pexels.com/photos/326333/pexels-photo-326333.jpeg?cs=srgb&dl=pexels-pixabay-326333.jpg&fm=jpg");
+                background-repeat: no-repeat;
+                background-size:cover ;
+            }
+            #main
+            {
+                padding-left: 5%;
+                padding-top: 50px;
+                display: grid;
+                grid-template-columns: repeat(3,20rem);
+                gap: 150px;
+            }
+            #aa
+            {
+                width: 100px;
+                height: 130px;
+                font-size:100px;
+                background-color: green;
+            }
+            #tit
+            {
+                padding-left: 45%;
+                padding-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+        <div id="a">
+            <p style="color: green; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">ADD A NOTE</p>
+        <button id="aa" onclick="create()">+</button>
+    </center>
+    </div>
+    <div id="tit"></div>
+    <div id="main"></div>
+    <script>
+        function create()
+        {
+            let di=document.createElement("div");
+            let node1=document.createElement("p");
+            node1.innerHTML=`<p id="ha"><input style="background-color:red" type="text" id="titl" placeholder="Enter the title"><br><br>
+            <textarea placeholder="Enter the text" style="background-color:red" id="val"></textarea ><br><br><button style="background-color:green" onclick="add(event)">submit</button></p>`
+            di.appendChild(node1);
+            document.getElementById("tit").appendChild(di);
+        }
+        function add(event)
+        {
+        let mnode=document.createElement("div");
+        let node=document.createElement("div");
+        let str=document.createElement("p");
+        str.innerHTML=`<button style="background-color:red;color:white" onclick="del(event)">X</button>`;
+        str.style.paddingLeft="380px";
+        mnode.width="400px";
+        mnode.appendChild(str);
+        mnode.appendChild(node);
+        let tex=document.getElementById("val").value;
+        let titl=document.getElementById("titl").value;
+        node.innerHTML=`<center><h1>${titl}</h1></center><p style="padding:20px" id="te">${tex}</p>`;
+        node.style.fontSize="larger";
+        node.style.backgroundColor="yellow";
+        node.style.width="400px";
+        node.style.height="300px";
+        node.style.color="black";
+        node.style.overflowY="scroll";
+        node.contentEditable=true;
+        document.getElementById("main").appendChild(mnode);
+        event.target.parentElement.remove();
+        }
+        function del(event)
+        {
+            event.target.parentElement.parentElement.remove();
+        }
+    </script>
+    </body>
+</html>
